@@ -4,6 +4,16 @@ A browser-based 3D rebrand concept inspired by the supplied One Mount Möbius lo
 
 Run `npm run dev`, then open http://127.0.0.1:4321/. No package installation is needed: Three.js 0.180.0 and its MIT license are vendored locally. Build deployable files with `npm run build`.
 
+## Spatial evolution presentation
+
+Open `evolution.html` directly, or visit http://127.0.0.1:4321/evolution.html. The presentation deforms one solid three-dimensional ribbon from the original Möbius loop into a spiral following the outside of a funnel. The supplied construction diagrams guide the flared mouth, narrowing shoulder, and winding tail. Every stage can be inspected with orbit controls. Original angle, Horizontal view, Funnel view, and 3D view provide camera shortcuts.
+
+The evolution scrubber and four stages control the same mesh and preserve form settings. Endpoint controls adjust turns, axial extension, band coverage, end radius, funnel curve, tail length, turn distribution, and end width. Turn distribution 1 gives even axial spacing; other values redistribute the turns within the chosen length. Cone, Horn, and Tornado provide starting forms. Funnel view stands the model upright with its mouth at the top; Horizontal view presents it along the original sketch’s direction.
+
+Solid, real 3D edge, and combined views expose the spatial construction. PNG export supports transparent backgrounds and up to a 4096-pixel long edge.
+
+The generated HTML embeds Three.js, all geometry, controls, styles, and reference images, so it works offline in a modern browser with WebGL 2. Save HTML preserves the current form options, evolution position, material, and camera angle. Run `node build-evolution.mjs` to regenerate it from `evolution.template.html`, `evolution.css`, `evolution.js`, and `spatial-evolution-geometry.js`; `npm run build` also performs this step.
+
 ## Controls
 
 - Möbius / Growth / Helix tabs switch between evolution stages. Other geometry settings, object rotation, materials, camera, and export options carry across. Each tab remembers its edited evolution value.

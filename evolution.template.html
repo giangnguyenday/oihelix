@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#242724">
+  <meta name="description" content="Explore the original One Mount Möbius ribbon opening and growing into a spiral funnel, with controls for its cone, horn, and tornado forms.">
+  <title>One Mount — Spatial Evolution</title>
+  <style>__EVOLUTION_CSS__</style>
+  <script type="importmap">__EVOLUTION_IMPORT_MAP__</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="identity">
+      <span class="brand-mark"><img src="__ORIGINAL_LOGO_DATA__" alt=""></span>
+      <span class="wordmark">ONE MOUNT</span>
+      <span class="identity-divider" aria-hidden="true"></span>
+      <span class="document-name">Spatial evolution</span>
+    </div>
+    <nav class="top-actions" aria-label="Presentation actions">
+      <a href="./index.html" class="studio-link">Form studio</a>
+      <button id="save-html" type="button" class="quiet-button">Save HTML</button>
+      <button id="present" type="button" class="present-button">Present</button>
+    </nav>
+  </header>
+
+  <main class="experience">
+    <section id="viewport" class="viewport" aria-label="Interactive three-dimensional Möbius to helix evolution">
+      <canvas id="evolution-canvas" tabindex="0" aria-label="Live three-dimensional ribbon. Drag to orbit, scroll to zoom, right-drag to pan."></canvas>
+      <div class="visual-heading"><p>One continuous surface</p><h2>A loop, moving forward.</h2></div>
+      <span class="viewport-label">Live 3D ribbon</span>
+      <figure class="target-sketch"><img src="__FUNNEL_REFERENCE_DATA__" alt="Reference diagram of a tapered spiral funnel"><figcaption>Funnel construction</figcaption></figure>
+      <div id="loading" class="loading" role="status"><span class="loading-ring" aria-hidden="true"></span>Building the ribbon…</div>
+      <button id="reference" class="reference-button" type="button">View the references</button>
+      <div class="viewport-footer">
+        <div class="motion-toolbar" role="group" aria-label="Camera motion">
+          <button id="follow-camera" type="button" class="active" aria-pressed="true" title="Let the camera follow the evolution">Follow evolution</button>
+          <span class="toolbar-divider" aria-hidden="true"></span>
+          <button id="auto-orbit" type="button" aria-pressed="false">Auto orbit</button>
+        </div>
+        <div class="camera-toolbar" role="group" aria-label="Camera views">
+          <button type="button" data-view="original" class="active" aria-pressed="true">Original angle</button>
+          <button type="button" data-view="sketch" aria-pressed="false">Horizontal view</button>
+          <button type="button" data-view="perspective" aria-pressed="false">3D view</button>
+          <button type="button" data-view="upright" aria-pressed="false">Funnel view</button>
+          <span class="toolbar-divider" aria-hidden="true"></span>
+          <button id="fit-view" type="button" title="Fit the ribbon in view">Fit</button>
+        </div>
+        <p id="orbit-hint" class="orbit-hint">Drag to orbit <span>·</span> Scroll to zoom <span>·</span> Right-drag to pan</p>
+      </div>
+    </section>
+
+    <aside class="evolution-panel" aria-label="Evolution, shape, and export controls">
+      <section class="narrative">
+        <p class="eyebrow">The design rationale</p>
+        <h1 id="phase-title">The loop, in space.</h1>
+        <p id="phase-copy">The original mark becomes a solid Möbius ribbon. Its turn and open centre establish the starting form.</p>
+      </section>
+
+      <section class="panel-section playback-section" aria-label="Evolution playback">
+        <div class="parameter-label"><label for="progress">Evolution</label><output id="percentage" for="progress">0%</output></div>
+        <input id="progress" class="evolution-progress" type="range" min="0" max="1000" step="1" value="0" aria-label="Evolution from the original Möbius loop to the spiral funnel">
+        <div class="range-captions"><span>Original loop</span><span>Spiral funnel</span></div>
+        <button id="play" class="play-button" type="button" aria-pressed="false">Play evolution</button>
+        <div class="stages" role="group" aria-label="Evolution stages">
+          <button type="button" data-stage="0" class="active" aria-pressed="true">Loop</button>
+          <button type="button" data-stage="1" aria-pressed="false">Open</button>
+          <button type="button" data-stage="2" aria-pressed="false">Extend</button>
+          <button type="button" data-stage="3" aria-pressed="false">Taper</button>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <details class="form-details" open>
+          <summary><span>Spiral funnel form</span><span class="disclosure" aria-hidden="true"></span></summary>
+          <div class="form-presets" role="group" aria-label="Endpoint form presets"><button type="button" data-form-preset="cone" aria-pressed="false">Cone</button><button type="button" data-form-preset="horn" aria-pressed="false">Horn</button><button type="button" data-form-preset="tornado" aria-pressed="false">Tornado</button></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-turns">Turns</label><output data-option-value="turns" for="option-turns">5</output></div><input id="option-turns" data-option="turns" type="range" min="1" max="7" step="0.05" value="5"></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-length">Extension</label><output data-option-value="length" for="option-length">9.5</output></div><input id="option-length" data-option="length" type="range" min="3.5" max="14" step="0.1" value="9.5"></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-width">Band coverage</label><output data-option-value="width" for="option-width">58%</output></div><input id="option-width" data-option="width" type="range" min="0.12" max="0.92" step="0.01" value="0.58"></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-end-radius">End radius</label><output data-option-value="endRadius" for="option-end-radius">0.05</output></div><input id="option-end-radius" data-option="endRadius" type="range" min="0" max="0.8" step="0.01" value="0.05"></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-taper">Funnel curve</label><output data-option-value="taper" for="option-taper">2.2</output></div><input id="option-taper" data-option="taper" type="range" min="0.5" max="5" step="0.05" value="2.2"><p class="parameter-hint">Higher values narrow the funnel sooner.</p></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-neck">Tail length</label><output data-option-value="neck" for="option-neck">25%</output></div><input id="option-neck" data-option="neck" type="range" min="0" max="0.65" step="0.01" value="0.25"></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-pitch">Turn distribution</label><output data-option-value="pitch" for="option-pitch">1</output></div><input id="option-pitch" data-option="pitch" type="range" min="0.5" max="2" step="0.05" value="1"><p class="parameter-hint">1 = evenly spaced turns</p></div>
+          <div class="parameter"><div class="parameter-label"><label for="option-tip-width">End width</label><output data-option-value="tipWidth" for="option-tip-width">30%</output></div><input id="option-tip-width" data-option="tipWidth" type="range" min="0.05" max="1" step="0.01" value="0.3"></div>
+          <button id="reset-form" type="button" class="panel-text-button">Reset form</button>
+        </details>
+      </section>
+
+      <section class="panel-section" aria-labelledby="surface-heading">
+        <h3 id="surface-heading">Surface &amp; structure</h3>
+        <div class="select-field"><label for="display-mode">Display</label><select id="display-mode"><option value="solid" selected>Solid surface</option><option value="edges">Ribbon edges</option><option value="solid-edges">Surface &amp; edges</option></select></div>
+        <div class="material-row"><div class="select-field"><label for="material">Material</label><select id="material"><option value="satin" selected>Satin</option><option value="chrome">Chrome</option><option value="ink">Matte ink</option></select></div><div class="color-field"><label for="ribbon-color">Color</label><input id="ribbon-color" type="color" value="#eb6047" title="Ribbon color"></div></div>
+      </section>
+
+      <section class="panel-section export-section" aria-labelledby="capture-heading">
+        <h3 id="capture-heading">Capture the form</h3>
+        <div class="select-field"><label for="export-size">PNG resolution</label><select id="export-size"><option value="1200">1,200 px</option><option value="2400" selected>2,400 px</option><option value="4096">4,096 px</option></select></div>
+        <label for="transparent" class="checkbox-label"><input id="transparent" type="checkbox"><span>Transparent background</span></label>
+        <button id="save-png" type="button" class="export-button">Save PNG</button>
+        <p id="export-status" class="export-status" role="status" aria-live="polite">Exports the 3D form without the interface.</p>
+      </section>
+    </aside>
+  </main>
+
+  <dialog id="reference-dialog" aria-labelledby="reference-heading">
+    <header class="dialog-header"><h2 id="reference-heading">From loop to spiral funnel</h2><button id="close-reference" type="button" class="dialog-close">Close</button></header>
+    <div class="reference-grid">
+      <figure><img class="original-reference" src="__ORIGINAL_LOGO_DATA__" alt="Original One Mount Möbius logo"><figcaption>The original loop</figcaption></figure>
+      <figure><img src="__SKETCH_DATA__" alt="Sketch of a large front turn, smaller receding turn, and pointed end"><figcaption>The sketch, interpreted as a 3D ribbon</figcaption></figure>
+      <figure><img class="diagram-reference" src="__FUNNEL_REFERENCE_DATA__" alt="Historical diagram of a spiral tapering around a funnel"><figcaption>A spiral following a funnel</figcaption></figure>
+      <figure><img class="diagram-reference" src="__CONSTRUCTION_REFERENCE_DATA__" alt="Historical construction diagram of the spiral funnel geometry"><figcaption>The funnel construction</figcaption></figure>
+    </div>
+    <p class="reference-note">The same ribbon opens and winds around a tapering axis. The references guide its changing radius, spacing, and tail. Compare the cone, horn, and tornado forms, then orbit the model to inspect their surfaces.</p>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module">__EVOLUTION_RUNTIME__</script>
+</body>
+</html>
