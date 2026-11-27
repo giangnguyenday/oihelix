@@ -1,0 +1,10 @@
+{
+  "name": "one-mount-helix-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 4321 --bind 127.0.0.1",
+    "build": "node build.mjs",
+    "check": "node --check app.js && node --check geometry.js"
+  }
+}

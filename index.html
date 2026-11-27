@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#222522" />
+    <meta name="description" content="Explore a One Mount-inspired Möbius ribbon growing into a three-dimensional helix. Shape, orbit and export your own concept." />
+    <title>One Mount — Helix Form Studio</title>
+    <link rel="stylesheet" href="./styles.css?v=rotation-2" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="identity" href="./" aria-label="One Mount Form Studio home">
+        <span class="brand-mark"><img src="./assets/logo.png" alt="" /></span>
+        <span class="brand-wordmark">ONE MOUNT</span>
+        <span class="identity-divider" aria-hidden="true"></span>
+        <span class="studio-name">Form studio</span>
+      </a>
+      <span class="header-caption">A new dimension of growth</span>
+    </header>
+
+    <main class="studio-layout">
+      <section id="viewport" class="viewport" aria-label="Interactive 3D ribbon. Drag to orbit, scroll to zoom, right-drag to pan.">
+        <canvas id="scene-canvas" tabindex="0" aria-label="Three-dimensional Möbius to helix concept"></canvas>
+        <div class="stage-heading">
+          <p class="eyebrow">Rebrand exploration</p>
+          <h1>Möbius to Helix</h1>
+          <p class="stage-description">One continuous ribbon. Room to grow.</p>
+        </div>
+        <div class="stage-meta"><button type="button" data-view="logo" class="logo-angle-button" aria-pressed="false" title="One Mount reference angle (L)" aria-keyshortcuts="L">Logo angle</button></div>
+        <div id="loading" class="loading" role="status"><span class="loading-ring"></span> Shaping the ribbon…</div>
+
+        <aside class="source-reference" aria-label="Original One Mount logo reference">
+          <div class="source-mark"><img src="./assets/logo.png" alt="Original One Mount Möbius logo" /></div>
+          <div><span class="reference-kicker">The starting point</span><strong>Original loop</strong></div>
+        </aside>
+
+        <div class="viewport-footer">
+          <div class="interaction-toolbar" role="group" aria-label="Canvas interaction">
+            <button type="button" id="toggle-object-drag" aria-pressed="false" title="Drag the canvas to rotate the shape instead of orbiting the camera">Rotate shape</button>
+            <span class="toolbar-divider" aria-hidden="true"></span>
+            <button type="button" id="toggle-rotate" aria-pressed="false" title="Toggle automatic camera orbit">Auto orbit</button>
+          </div>
+          <div class="camera-toolbar" role="group" aria-label="Camera views">
+            <button type="button" data-view="perspective" class="active" aria-pressed="true">Perspective</button>
+            <button type="button" data-view="front" aria-pressed="false">Front</button>
+            <button type="button" data-view="top" aria-pressed="false">Top</button>
+            <button type="button" data-view="side" aria-pressed="false">Side</button>
+            <span class="toolbar-divider" aria-hidden="true"></span>
+            <button type="button" id="fit-view" title="Fit the ribbon in view">Fit</button>
+          </div>
+          <p class="orbit-hint">Drag to orbit <span>·</span> Scroll to zoom <span>·</span> Right-drag to pan</p>
+        </div>
+        <div class="geometry-readout"><span id="view-name">Perspective</span><span id="geometry-info">Parametric ribbon</span></div>
+      </section>
+
+      <aside class="control-panel" aria-label="Shape and export controls">
+        <div class="panel-heading"><h2>Shape the evolution</h2><button type="button" id="reset-all" class="text-button">Reset</button></div>
+        <form id="controls" onsubmit="return false">
+          <section class="control-section first-section" aria-label="Growth and silhouette">
+            <div class="preset-switch" role="group" aria-label="Shape tabs">
+              <button type="button" data-preset="loop" aria-pressed="false">Möbius</button>
+              <button type="button" data-preset="growth" class="active" aria-pressed="true">Growth</button>
+              <button type="button" data-preset="helix" aria-pressed="false">Helix</button>
+            </div>
+            <div class="parameter growth-parameter">
+              <div class="parameter-label"><label for="param-growth">Evolution</label><output for="param-growth" data-value="growth">56%</output></div>
+              <input id="param-growth" data-param="growth" type="range" min="0" max="1" step="0.01" value="0.56" />
+              <div class="range-captions"><span>Closed loop</span><span>Open helix</span></div>
+            </div>
+            <div class="parameter"><div class="parameter-label"><label for="param-turns">Turns</label><output for="param-turns" data-value="turns">2.40</output></div><input id="param-turns" data-param="turns" type="range" min="1" max="4" step="0.05" value="2.4" /></div>
+            <div class="parameter"><div class="parameter-label"><label for="param-pitch">Rise per turn</label><output for="param-pitch" data-value="pitch">1.85</output></div><input id="param-pitch" data-param="pitch" type="range" min="0.6" max="3.5" step="0.05" value="1.85" /></div>
+            <div class="parameter"><div class="parameter-label"><label for="param-width">Ribbon width</label><output for="param-width" data-value="width">1.08</output></div><input id="param-width" data-param="width" type="range" min="0.35" max="1.6" step="0.01" value="1.08" /></div>
+
+            <details class="advanced-controls">
+              <summary>Fine tune the ribbon <span class="disclosure-plus" aria-hidden="true"></span></summary>
+              <div class="parameter"><div class="parameter-label"><label for="param-radius">Loop radius</label><output for="param-radius" data-value="radius">1.65</output></div><input id="param-radius" data-param="radius" type="range" min="1" max="2.6" step="0.02" value="1.65" /></div>
+              <div class="parameter"><div class="parameter-label"><label for="param-thickness">Edge thickness</label><output for="param-thickness" data-value="thickness">0.070</output></div><input id="param-thickness" data-param="thickness" type="range" min="0.025" max="0.2" step="0.005" value="0.07" /></div>
+              <div class="parameter"><div class="parameter-label"><label for="param-twist">Ribbon twist</label><output for="param-twist" data-value="twist">0.50</output></div><input id="param-twist" data-param="twist" type="range" min="-0.5" max="1.5" step="0.05" value="0.5" /></div>
+              <div class="parameter"><div class="parameter-label"><label for="param-taper">Width variation</label><output for="param-taper" data-value="taper">0.22</output></div><input id="param-taper" data-param="taper" type="range" min="0" max="0.65" step="0.01" value="0.22" /></div>
+              <div class="parameter"><div class="parameter-label"><label for="param-asymmetry">Asymmetry</label><output for="param-asymmetry" data-value="asymmetry">0.18</output></div><input id="param-asymmetry" data-param="asymmetry" type="range" min="0" max="0.4" step="0.01" value="0.18" /></div>
+            </details>
+          </section>
+
+          <section class="control-section rotation-section" aria-label="Object rotation">
+            <details class="rotation-controls">
+              <summary><span>Object rotation</span><span class="disclosure-plus" aria-hidden="true"></span></summary>
+              <p class="rotation-description">Rotate the ribbon itself. Camera views stay independent.</p>
+              <div class="parameter"><div class="parameter-label"><label for="rotation-x">X axis</label><output for="rotation-x" data-rotation-value="x">0°</output></div><input id="rotation-x" data-rotation="x" type="range" min="-180" max="180" step="1" value="0" /></div>
+              <div class="parameter"><div class="parameter-label"><label for="rotation-y">Y axis</label><output for="rotation-y" data-rotation-value="y">0°</output></div><input id="rotation-y" data-rotation="y" type="range" min="-180" max="180" step="1" value="0" /></div>
+              <div class="parameter"><div class="parameter-label"><label for="rotation-z">Z axis</label><output for="rotation-z" data-rotation-value="z">0°</output></div><input id="rotation-z" data-rotation="z" type="range" min="-180" max="180" step="1" value="0" /></div>
+              <button type="button" id="reset-rotation" class="text-button">Reset rotation</button>
+            </details>
+          </section>
+
+          <section class="control-section appearance-section" aria-labelledby="appearance-heading">
+            <h3 id="appearance-heading">Surface &amp; scene</h3>
+            <div class="material-row"><div class="select-field"><label for="material">Material</label><select id="material"><option value="ceramic">Satin</option><option value="chrome">Chrome</option><option value="ink">Matte</option></select></div><div class="color-field"><label for="object-color">Color</label><input id="object-color" type="color" value="#ed513a" title="Ribbon color" /></div></div>
+            <div class="background-row"><span id="background-label">Background</span><div class="background-swatches" role="group" aria-labelledby="background-label"><button type="button" data-background="light" class="swatch light-swatch active" aria-label="Light gray background" aria-pressed="true" title="Light gray"></button><button type="button" data-background="white" class="swatch white-swatch" aria-label="White background" aria-pressed="false" title="White"></button><button type="button" data-background="dark" class="swatch dark-swatch" aria-label="Dark background" aria-pressed="false" title="Dark"></button><button type="button" data-background="coral" class="swatch coral-swatch" aria-label="Coral background" aria-pressed="false" title="Coral"></button></div></div>
+          </section>
+
+          <section class="control-section export-section" aria-labelledby="export-heading">
+            <div class="section-title-row"><h3 id="export-heading">Capture the concept</h3><span class="file-type">PNG</span></div>
+            <div class="export-fields"><div class="select-field"><label for="export-size">Resolution</label><select id="export-size"><option value="1200">1,200 px</option><option value="2400" selected>2,400 px</option><option value="4096">4,096 px</option></select></div><div class="select-field"><label for="export-ratio">Frame</label><select id="export-ratio"><option value="viewport">Current view</option><option value="square">Square</option><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select></div></div>
+            <label class="checkbox-label" for="transparent"><input id="transparent" type="checkbox" /><span>Transparent background</span></label>
+            <button type="button" id="export-png" class="export-button">Save image <span>PNG</span></button>
+            <p id="export-status" class="export-status" role="status" aria-live="polite">Exports the ribbon without the interface.</p>
+          </section>
+        </form>
+        <div class="panel-footer"><span>A concept inspired by the original mark.</span><button type="button" id="copy-settings" class="text-button">Copy settings</button></div>
+      </aside>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.js?v=rotation-2"></script>
+  </body>
+</html>
